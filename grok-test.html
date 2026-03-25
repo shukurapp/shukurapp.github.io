@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok API Test - Kiçik Forum</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+        #chat { border: 1px solid #ccc; padding: 15px; height: 400px; overflow-y: auto; background: white; border-radius: 8px; margin-bottom: 10px; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 8px; max-width: 80%; }
+        .user { background: #007bff; color: white; align-self: flex-end; margin-left: auto; }
+        .grok { background: #e0e0e0; color: black; }
+        input { width: 80%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; }
+        button { padding: 12px 20px; background: #000; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #333; }
+        .loading { color: #666; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h2>Grok API Test Forum (Sadə Chat)</h2>
+    <p>Bu, sənin xəbər saytında istifadə edəcəyin Grok-u test etmək üçün kiçik nümunədir.</p>
+    
+    <div id="chat"></div>
+    
+    <input type="text" id="userInput" placeholder="Mesaj yazın (məsələn: Bu xəbər doğrudurmu?)..." autocomplete="off">
+    <button onclick="sendMessage()">Göndər</button>
+
+    <script>
+        const API_KEY = "xai-5cX5uhm0yMhEZA73fWJ2AAA58zgPeSbFaGgqUNVRA82lzUwDbssyX384SUz0CsLV8HZj1PihdJJNkzrS";
+        const API_URL = "https://api.x.ai/v1/chat/completions";
+        
+        const systemPrompt = "Sən Groksan, xəbər yoxlayıcısı köməkçisisən. Cavablarını Azərbaycan dilində ver, faktlara əsaslan, qısa və dürüst ol.";
+
+        function addMessage(text, sender) {
+            const chat = document.getElementById("chat");
+            const div = document.createElement("div");
+            div.className = `message ${sender}`;
+            div.textContent = text;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, "user");
+            input.value = "";
+
+            const loading = document.createElement("div");
+            loading.className = "message grok loading";
+            loading.textContent = "Grok cavab verir...";
+            document.getElementById("chat").appendChild(loading);
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: "grok-4-1-fast",           // ən ucuz və sürətli model
+                        messages: [
+                            { role: "system", content: systemPrompt },
+                            { role: "user", content: message }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 800
+                    })
+                });
+
+                if (!response.ok) throw new Error("API xətası: " + response.status);
+
+                const data = await response.json();
+                const grokReply = data.choices[0].message.content;
+
+                loading.remove();
+                addMessage(grokReply, "grok");
+
+            } catch (error) {
+                loading.remove();
+                addMessage("Xəta baş verdi: " + error.message + "\n\nAPI key və ya internet yoxlan.", "grok");
+            }
+        }
+
+        // Enter düyməsi ilə göndərmək
+        document.getElementById("userInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    </script>
+</body>
+</html>
