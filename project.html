@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layihələrim - Shukur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; }
+        .project-card {
+            transition: all 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold text-emerald-400">Shukur</a>
+            <div class="flex gap-8 text-sm">
+                <a href="index.html" class="hover:text-emerald-400">Ana səhifə</a>
+                <a href="project.html" class="text-emerald-400 font-medium">Layihələr</a>
+                <a href="#elaqe" class="hover:text-emerald-400">Əlaqə</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 max-w-6xl mx-auto px-6">
+        <h1 class="text-5xl font-bold text-center mb-4">Layihələrim</h1>
+        <p class="text-zinc-400 text-center mb-12 text-lg">Hal-hazırda üzərində işlədiyim və bitmiş layihələr</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Layihə 1 -->
+            <div class="project-card bg-zinc-900 rounded-3xl overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-7xl">
+                    📱
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-2">React Native Starter</h3>
+                    <p class="text-zinc-400 mb-6">React Native ilə mobil tətbiqlər üçün hazır starter şablon. Navigation, theme və komponentlər daxildir.</p>
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="bg-emerald-900 text-emerald-300 px-3 py-1 rounded-full">React Native</span>
+                        <span class="bg-blue-900 text-blue-300 px-3 py-1 rounded-full">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/shukurapp/react-native-st..." target="_blank" 
+                       class="mt-6 inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300">
+                        GitHub-da bax <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Layihə 2 -->
+            <div class="project-card bg-zinc-900 rounded-3xl overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-7xl">
+                    🔐
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-2">Login & Register System</h3>
+                    <p class="text-zinc-400 mb-6">Kotlin dilində Android üçün Login və Registration fraqmentləri. Firebase ilə inteqrasiya olunub.</p>
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="bg-purple-900 text-purple-300 px-3 py-1 rounded-full">Kotlin</span>
+                        <span class="bg-orange-900 text-orange-300 px-3 py-1 rounded-full">Android</span>
+                    </div>
+                    <a href="https://github.com/shukurapp/LoginRegistrat..." target="_blank" 
+                       class="mt-6 inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300">
+                        GitHub-da bax <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Layihə 3 -->
+            <div class="project-card bg-zinc-900 rounded-3xl overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-7xl">
+                    🌐
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-2">Şəxsi Portfolio Saytı</h3>
+                    <p class="text-zinc-400 mb-6">Bu saytın özü. GitHub Pages üzərində Tailwind CSS və JavaScript ilə hazırlanmışdır.</p>
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="bg-sky-900 text-sky-300 px-3 py-1 rounded-full">HTML</span>
+                        <span class="bg-teal-900 text-teal-300 px-3 py-1 rounded-full">Tailwind</span>
+                        <span class="bg-yellow-900 text-yellow-300 px-3 py-1 rounded-full">JS</span>
+                    </div>
+                    <a href="https://github.com/shukurapp/shukurapp.github.io" target="_blank" 
+                       class="mt-6 inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300">
+                        GitHub-da bax <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black py-10 text-center text-zinc-500 text-sm">
+        © 2026 Shukur • <a href="index.html" class="hover:text-white">Ana səhifəyə qayıt</a>
+    </footer>
+
+</body>
+</html>
